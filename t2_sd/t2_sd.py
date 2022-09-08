@@ -1,25 +1,28 @@
 import sys, os
 from pyDF import *
+from glob import glob
+from mutagen.mp3 import EasyMP3 as load_mp3
 
 def convert(args):
-    pass
+    path = args[0]
+    mp3 = load_mp3(path)
+    return (mp3.get("artist", ""), mp3.get("title", ""))
 
 def print_line(args):
-	line = args[0]
-	print("-- {} --".format(line[:-1]))
+    tags = args[0]
+    print(f"{tags[0]} - {tags[1]}")
 
 nprocs = int(sys.argv[1])
 
 graph = DFGraph()
 sched = Scheduler(graph, nprocs, mpi_enabled = False)
 
-fp = open(sys.argv[2], "r")
+files = glob(f"{sys.argv[2]}/*.mp3")
 
-src = Source(fp)
-processing = Node(convert, 1)
+src = Source(files)
+processing = FilterTagged(convert, 1)
 printer = Serializer(print_line, 1)
 
-printer.pin(0)
 graph.add(src)
 graph.add(processing)
 graph.add(printer)
