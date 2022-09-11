@@ -9,12 +9,14 @@ p0           ->                  p1                ->         p2
 criptografia -> checksum(autenticação da mensagem) -> decriptografia
 
 Seja um cliente A e um cliente B
+
 Cada cliente insere loga com o seu nome
+
 Cada cliente possui 3 opções:
 
-  1 - sair da aplicação
-  2 - listar emails recebidos
-  3 - enviar um email
+  1. - sair da aplicação
+  1. - listar emails recebidos
+  1. - enviar um email
   
  (1) é trivial
  (2) listamos todos os emails
