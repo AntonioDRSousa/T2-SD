@@ -13,21 +13,13 @@ Seja um cliente A e um cliente B
 Cada cliente insere loga com o seu nome
 
 Cada cliente possui 3 opções:
-
-  1. - sair da aplicação
-  1. - listar emails recebidos
-  1. - enviar um email
-  
- (1) é trivial
- (2) listamos todos os emails
- (3) é inserido o nome do cliente para o qual será enviado o email, o assunto do email e o conteudo da mensagem
+  1. sair da aplicação (é trivial)
+  1. listar emails recebidos (listamos todos os emails)
+  1. enviar um email (é inserido o nome do cliente para o qual será enviado o email, o assunto do email e o conteudo da mensagem)
  
 Vamos analisar um envio de um email de um cliente A para um cliente B.
-1 - o cliente A envia um email que passa pelo nó da criptografia, tendo a mensagem criptografada
-2 - após a criptografia, a mensagem passa por um checksum, onde é autenticada
-3 - a mensagem aguarda um evento de leitura por parte do cliente B, em caso o cliente B decida ler o email especifico, a mensagem é decriptada
+1. o cliente A envia um email que passa pelo nó da criptografia, tendo a mensagem criptografada
+1. após a criptografia, a mensagem passa por um checksum, onde é autenticada
+1. a mensagem aguarda um evento de leitura por parte do cliente B, em caso o cliente B decida ler o email especifico, a mensagem é decriptada
 
-A mensagem chega em p0 e é colocada numa fila, quando é processada é armezenada criptografada
-A mensagem é armazenada em p2 de modo criptografado, só sendo decriptada com a solicitação do cliente B
-
-Tais medidas visam a segurança
+A mensagem chega em p0 e é colocada numa fila, quando é processada é armezenada criptografada. A mensagem é armazenada em p2 de modo criptografado, só sendo decriptada com a solicitação do cliente B. Tais medidas visam a segurança
