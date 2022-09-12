@@ -6,6 +6,7 @@ Ideia = serviço de emails simples pelo prompt de comando
 PIPELINE
 
 p0           ->                  p1                ->         p2
+
 criptografia -> checksum(autenticação da mensagem) -> decriptografia
 
 Seja um cliente A e um cliente B
