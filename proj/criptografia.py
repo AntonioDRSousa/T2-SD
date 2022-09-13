@@ -26,10 +26,20 @@ def decripta(msg,key):
 def assinatura(msg,priv_key):
     return rsa.sign(msg.encode(),priv_key,'SHA-1')
 
+def assinatura_b(msg,priv_key):
+    return rsa.sign(msg,priv_key,'SHA-1')
+
 # verifica se a assinatura corresponde a' mensagem
 def verifica_assinatura(msg,sign,pub_key):
     try:
         rsa.verify(msg.encode(), sign, pub_key)
+        return True
+    except:
+        return False
+
+def verifica_assinatura_b(msg,sign,pub_key):
+    try:
+        rsa.verify(msg, sign, pub_key)
         return True
     except:
         return False

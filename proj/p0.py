@@ -3,36 +3,8 @@ modulo de rotinas do p0 no pipeline
 
 """
 
-# pseudocodigo de "sistemas distribuidos"
-
-"""
-
-Evento Consumir(mensagem,nos_que_enviaram):
-	// interpreta_mensagem pega a mensagem e transforma nos argumentos correspondente da funcao
-	saida = procedimento(interpreta_mensagem(mensagem));
-	envia(nos_que_enviaram,mensagem);
-
-// permite a memoria compartilhada dentro do nó de processamento central	
-procedimento(procedimento_correspondente, *entrada, *saida):
-	enquanto True:
-		adquirir_lock_entrada();
-		Se *entrada != nulo:
-			adquirir_lock_saida();
-			*saida = procedimento_correspondente(entrada);
-			*entrada = nulo;
-			libera_lock_saida();
-		libera_lock_entrada();
-
-
-main:
-	enquanto True:
-		Se get_evento == Consumir:
-			// o computador central produz threads para cada evento que receber de cada nó
-			Thread(Consumir(mensagem,mps_que_envia));
-
-"""
-
 import criptografia
+import script
 
 # busca usuario a receber mensagem por nome num vetor com os usuarios
 # retorna a posicao do elemento
@@ -42,9 +14,11 @@ def busca_usuario(us,usuarios):
             return i
     return -1
     
+    
 
 def processo_envio_p0(msg,us_in,us_out):
-    pos = busca_usuario(us_out,usuarios)
+    # recebe de cliente: msg, cliente que envia, cliente que recebe
+    pos = busca_usuario(us_out,script.clientes)
     if pos==(-1):
         print()# comando inutil
         # envia informacao de ausencia de usuario para o us_in
@@ -52,15 +26,17 @@ def processo_envio_p0(msg,us_in,us_out):
         key = criptografia.gera_chaves()
         priv_key = key[1]
         pub_key = key[0]
-        signature = criptografia.assinatura(msg,priv_key)
-        # envia para p1: pub_key, signature, msg, pos(precisa para saber usuario a receber)
+        
         # envia para cliente in e cliente out: priv_key
-        # deletar priv_key, por questao de seguranca
+        envia_chave(us_in,us_out,priv_key)
 
-# definido na aplicacao principal os parametros
-def processo_status_p0(status_usuarios):
-    print()# comando inutil
-    # envia para p1: status_usuarios com (status, pos)
+        # envia para p1: pub_key, msg, pos
+        
 
-
+#envia chave privada para usuarios
+def envia_chave(u1,u2,key):
+    t=script.clientes[u1][u2]
+    script.clientes[u1][u2]=(key,t[1],t[2])
+    
+    
 

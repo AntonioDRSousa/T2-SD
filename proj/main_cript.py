@@ -5,8 +5,10 @@ Aqui sao testados aspectos criptograficos da aplicacao
 """
 
 import criptografia
+print(criptografia.nbits)
 
-msg = str(input("msg = "))
+#msg = str(input("msg = "))
+msg="banana"
 
 key = criptografia.gera_chaves()
 crypto = criptografia.encripta(msg, key[0])
@@ -38,3 +40,7 @@ print("Mensagem Decriptada")
 print("----------------------------------\n")
 print(decrypt)
 print("\n----------------------------------\n")
+#print(criptografia.verifica_assinatura(crypto,signature,key[0]))
+print(type(crypto))
+signature = criptografia.assinatura_b(crypto,key[1])
+print(criptografia.verifica_assinatura_b(crypto,signature,key[0]))
