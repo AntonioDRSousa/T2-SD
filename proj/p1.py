@@ -1,5 +1,5 @@
 """
-modulo de rotinas do p0 no pipeline
+modulo de rotinas do p1 no pipeline
 
 """
 
@@ -33,34 +33,17 @@ main:
 """
 
 import criptografia
-
-# busca usuario a receber mensagem por nome num vetor com os usuarios
-# retorna a posicao do elemento
-def busca_usuario(us,usuarios):
-    for i in range(0,len(usuarios)):
-        if usuarios[i]==us:
-            return i
-    return -1
     
 
-def processo_envio_p0(msg,us_in,us_out):
-    pos = busca_usuario(us_out,usuarios)
-    if pos==(-1):
-        print()# comando inutil
-        # envia informacao de ausencia de usuario para o us_in
-    else:
-        key = criptografia.gera_chaves()
-        priv_key = key[1]
-        pub_key = key[0]
-        signature = criptografia.assinatura(msg,priv_key)
-        # envia para p1: pub_key, signature, msg, pos(precisa para saber usuario a receber)
-        # envia para cliente in e cliente out: priv_key
-        # deletar priv_key, por questao de seguranca
+def processo_p1(msg,pub_key, signature, pos_us):
+    crypto = criptografia.encripta(msg, pub_key)
+    # envia para p2: signature, crypto, pos_us
+    # deletar pub_key, por ser desnecessaria a partir de agora
+    # deletar msg, por questao de seguranca
 
 # definido na aplicacao principal os parametros
-def processo_status_p0(status_usuarios):
+def processo_status_p1(status_usuarios):
     print()# comando inutil
     # envia para p1: status_usuarios com (status, pos)
-
 
 
