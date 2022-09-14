@@ -9,3 +9,11 @@ p2: armazena a mensagem criptografada do usuário, envia a mensagem realizando a
 O código script simula a ação de um cliente.
 Nesse sistema usou-se como criptografia a criptografia RSA, devido a ser uma criptografia forte, na assinatura usou-se SHA-1.
 
+Para executar:
+```
+cd proj
+python3 main.py [nprocs]
+
+# em outro terminal
+python3 script.py
+```
