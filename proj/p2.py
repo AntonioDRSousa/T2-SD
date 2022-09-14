@@ -9,7 +9,6 @@ import script
 def processo_p2(crypto, signature, us_in, us_out):
     # recebe para p1: signature, crypto, us_in, us_out
     if criptografia.verifica_assinatura_b(crypto,signature,key[0]) :
-        print()# comando inutil
         # envia para cliente out: crypto
         t=script.clientes[us_in][us_out]
         script.clientes[us_in][us_out]=(t[0],(t[1]).append(crypto),t[2])
