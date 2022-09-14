@@ -10,8 +10,13 @@ import p0
 import p1
 import p2
 
+import xmlrpc.client
+import sys
+
+proxy = xmlrpc.client.ServerProxy("http://localhost:8000/")
+
 numero_clientes = 10
-clientes=[]
+clientes = []
 
 def cria_clientes():
     global clientes
@@ -58,7 +63,10 @@ def main():
     print("cliente "+str(i)+" envia para cliente "+str(u)+" -> "+words[r])
     print("----------------------------\n\n\n")
     # envia para p0: msg, cliente que envia, cliente que recebe
-    return words[r],i,u 
-        
+    return words[r], i, u 
+    #response = proxy.service((words[r], i, u ))
+
+    #print(response)
+
 main()
     
