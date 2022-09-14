@@ -1,26 +1,11 @@
-# T2-SD
-Segundo Trabalho da disciplina de Sistemas Distribuídos do curso de Graduação em Ciência da Computação da UERJ
+Explicação da Ideia
 
-Ideia = serviço de emails simples pelo prompt de comando
+O sistema foi feito com uma topologia de pipeline em 3 estágios:
 
-PIPELINE
+p0: recebe mensagem do usuário, gera as chaves criptográficas, fornece a chave privada para os usuários a, enviar a mensagem com a chave pública e privada para o próximo estágio
+p1: encripta com a chave pública a mensagem e cria uma assinatura para a mensagem
+p2: armazena a mensagem criptografada do usuário, envia a mensagem realizando a autenticação da assinatura
 
-p0           ->                  p1                ->         p2
+O código script simula a ação de um cliente.
+Nesse sistema usou-se como criptografia a criptografia RSA, devido a ser uma criptografia forte, na assinatura usou-se SHA-1.
 
-criptografia -> checksum(autenticação da mensagem) -> decriptografia
-
-Seja um cliente A e um cliente B
-
-Cada cliente insere loga com o seu nome
-
-Cada cliente possui 3 opções:
-  1. sair da aplicação (é trivial)
-  1. listar emails recebidos (listamos todos os emails)
-  1. enviar um email (é inserido o nome do cliente para o qual será enviado o email, o assunto do email e o conteudo da mensagem)
- 
-Vamos analisar um envio de um email de um cliente A para um cliente B.
-1. o cliente A envia um email que passa pelo nó da criptografia, tendo a mensagem criptografada
-1. após a criptografia, a mensagem passa por um checksum, onde é autenticada
-1. a mensagem aguarda um evento de leitura por parte do cliente B, em caso o cliente B decida ler o email especifico, a mensagem é decriptada
-
-A mensagem chega em p0 e é colocada numa fila, quando é processada é armezenada criptografada. A mensagem é armazenada em p2 de modo criptografado, só sendo decriptada com a solicitação do cliente B. Tais medidas visam a segurança
