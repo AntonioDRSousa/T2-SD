@@ -29,28 +29,26 @@ def main():
     y, c, d = clientes[i][j]
     
     if len(c) > 0:
-        for h in range(0, len(c)):
-            key = y[h]
-            d.append(criptografia.decripta(c[h], key))
+        for h in range(len(c)):
+            d.append(criptografia.decripta(c[h], y[h]))
 
     print("----------------------------")
-    print("Mensagens entre cliente " + str(i) + " e " + "cliente " + str(j))
+    print("Mensagens entre cliente", str(i), "e cliente", str(j))
     print("----------------------------")
     
-    for x in range(0, len(d)):
-        print(d[x])
+    for x in d:
+        print(x)
         
     print("----------------------------")
     
-    r = random.randint(0, (len(words) - 1))
-    u = random.randint(0, (len(clientes) - 1))
+    r = random.randint(0, len(words) - 1)
+    u = random.randint(0, len(clientes) - 1)
     
-    print("cliente " + str(i) + " envia para cliente " + str(u) + " -> " + words[r])
+    print("cliente", str(i), "envia para cliente", str(j), "->", words[r])
     print("----------------------------\n\n\n")
-    
-    # envia para p0: msg, cliente que envia, cliente que recebe
-    response = proxy.service((words[r], i, u ))
 
+    # envia para p0: msg, cliente que envia, cliente que recebe
+    response = proxy.service((words[r], i, j))
     print(response)
 
 main()
