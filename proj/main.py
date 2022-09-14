@@ -7,20 +7,17 @@ from p1 import *
 from p2 import *
 
 def p0(args):
-    msg, us_in, us_out = args
-    return processo_envio_p0(msg, us_in, us_out)
+    msg, us_in, us_out = args[0]
+    return processo_p0(msg, us_in, us_out)
 
 def p1(args):
-    msg, pub_key, signature, pos_us = args
-    return processo_p1(msg, pub_key, signature, pos_us)
+    pub_key, priv_key, msg, us_in, us_out = args[0]
+    return processo_p1(pub_key, priv_key, msg, us_in, us_out)
 
 def p2(args):
-    crypto, signature, pos_us = args
-    return processo_p2(crypto, signature, pos_us)
+    crypto, signature, pub_key, us_in, us_out = args[0]
+    return processo_p2(crypto, signature, pub_key, us_in, us_out)
 
-
-def print_line(args):
-    x = args[0]
 
 nprocs = int(sys.argv[1])
 
