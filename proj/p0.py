@@ -24,6 +24,7 @@ def processo_envio_p0(msg,us_in,us_out):
         envia_chave(us_in,us_out,priv_key)
 
         # envia para p1: pub_key, priv_key msg, us_in, us_out
+        return pub_key, priv_key, msg, us_in, us_out
         
 
 #envia chave privada para usuarios
