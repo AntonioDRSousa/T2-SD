@@ -1,10 +1,10 @@
-# Projeto
+Explicação da Ideia
 
-O projeto e' um sistema de envio de emails simples.
-A ideia é dividir em 3 pipelines em um sistema distribuido:
+O sistema foi feito com uma topologia de pipeline em 3 estágios:
 
-1. **p0**: recebe mensagem do usuário, busca o usuário receptor da mensagem, gera as chaves criptograficas, fornece a chave privada para o usuário a receber a mensagem, cria uma assinatura para a mensagem, envia a mensagem com a chave pública para o próximo estágio
-2. **p1**: encripta com a chave pública a mensagem
-3. **p2**: armazena a mensagem criptografada do usuário, quando o usuário a receber estiver online, envia a mensagem realizando a autenticação da assinatura, após o envio a mensagem é deletada
+p0: recebe mensagem do usuário, gera as chaves criptográficas, fornece a chave privada para os usuários a, enviar a mensagem com a chave pública e privada para o próximo estágio
+p1: encripta com a chave pública a mensagem e cria uma assinatura para a mensagem
+p2: armazena a mensagem criptografada do usuário, envia a mensagem realizando a autenticação da assinatura
 
-Nesse sistema a decriptação é realizada no ambiente local do usuário receptor. Tal medida visa aumentar a segurança
+O código script simula a ação de um cliente.
+Nesse sistema usou-se como criptografia a criptografia RSA, devido a ser uma criptografia forte, na assinatura usou-se SHA-1.
